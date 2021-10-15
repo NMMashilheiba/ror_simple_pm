@@ -3,7 +3,12 @@
 class TasksReflex < ApplicationReflex
 
   def sort
-    binding.pry
+    # binding.pry
+    tasks = JSON.parse(element.dataset.tasks)
+    tasks.each do |task|
+      task_record = Task.find(task['id'])
+      task_record.update(position: task['position'])
+    end
   end
 
 end
